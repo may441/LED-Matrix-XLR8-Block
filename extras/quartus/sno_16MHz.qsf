@@ -1,0 +1,74 @@
+set_global_assignment -name TOP_LEVEL_ENTITY xlr8_alorium_top
+#==============================================================================
+# Copyright (c) 2016 Alorim Technology.  All right reserved.
+#==============================================================================
+#
+# File Name  : sno_16MHz.qsf
+# Author     : Steve Phillips
+# Contact    : support@aloriumtech.com
+# Description:
+#
+# This file sets a coupleof parameters need for the specific clock
+# speed we are compiling at and then loads the other Quartus settings
+# files. This file should not be edited by users of OpenXLR8
+#
+# Quartus settings for XLR8 project
+#  http://www.aloriumtech.com/xlr8
+#  https://github.com/AloriumTechnology
+#==============================================================================
+
+
+#------------------------------------------------------------------------------
+# Set the values in this section based on the clock speed desired
+
+# Set values for DESIGN_CONFIG. Use 16MHz=1064, 32MHz=1066, 64MHz=1068
+set_parameter -name DESIGN_CONFIG 1064
+
+# Select AVR core based on Clock speed
+
+#------------------------------------------------------------------------------
+# Load standard settings that apply to all XLR8 builds
+
+source ../../../XLR8Core/extras/quartus/sno_top_core.qsf
+source ../../../XLR8Core/extras/quartus/xlr8_base.qsf
+
+#------------------------------------------------------------------------------
+
+set_global_assignment -name LAST_QUARTUS_VERSION "18.0.0 Lite Edition"
+set_global_assignment -name FLOW_ENABLE_POWER_ANALYZER ON
+set_global_assignment -name POWER_DEFAULT_TOGGLE_RATE "12.5 %"
+set_global_assignment -name POWER_DEFAULT_INPUT_IO_TOGGLE_RATE "12.5 %"
+set_global_assignment -name POWER_USE_PVA OFF
+set_global_assignment -name VERILOG_FILE ../rtl/xlr8_wrap.v
+set_global_assignment -name SYSTEMVERILOG_FILE ../rtl/top_level.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../rtl/tb_top_level.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../rtl/tb_LEDdriver.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../rtl/register_interface.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../rtl/matrix_memory.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../rtl/LEDdriver.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../rtl/flex_pts_sr.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../rtl/flex_counter.sv
+set_global_assignment -name QXP_FILE ../../../XLR8Core/extras/quartus/sno_atmega328clone_16MHz.qxp
+set_global_assignment -name SOURCE_TCL_SCRIPT_FILE ../../../XLR8Core/extras/quartus/xlr8_top_core.tcl
+set_global_assignment -name QIP_FILE ../../../XLR8Core/extras/rtl/ip/int_osc/int_osc/synthesis/int_osc.qip
+set_global_assignment -name SIP_FILE ../../../XLR8Core/extras/rtl/ip/int_osc/int_osc/simulation/int_osc.sip
+set_global_assignment -name QIP_FILE ../../../XLR8Core/extras/rtl/ip/pll16/pll16.qip
+set_global_assignment -name QIP_FILE ../../../XLR8Core/extras/rtl/ip/ram2p16384x16/ram2p16384x16.qip
+set_global_assignment -name SDC_FILE ../../../XLR8Core/extras/quartus/altera_modular_adc_control.sdc
+set_global_assignment -name SDC_FILE ../../../XLR8Core/extras/quartus/altera_onchip_flash.sdc
+set_global_assignment -name SYSTEMVERILOG_FILE ../../../XLR8Core/extras/rtl/xlr8_alorium_top.v
+set_global_assignment -name SYSTEMVERILOG_FILE ../rtl/openxlr8.v
+set_global_assignment -name SDC_FILE ../../../XLR8Core/extras/quartus/xlr8_top.sdc
+set_global_assignment -name VHDL_FILE ../../../XLR8Float/extras/rtl/xlr8_float/xlr8_float_add1/dspba_library_package.vhd
+set_global_assignment -name VHDL_FILE ../../../XLR8Float/extras/rtl/xlr8_float/xlr8_float_add1/dspba_library.vhd
+set_global_assignment -name VERILOG_FILE ../../../XLR8Servo/extras/rtl/xlr8_servo.v
+set_global_assignment -name VERILOG_FILE ../../../XLR8NeoPixel/extras/rtl/xlr8_neopixel.v
+set_global_assignment -name VERILOG_FILE ../../../XLR8Quadrature/extras/rtl/xlr8_quadrature.v
+set_global_assignment -name VERILOG_FILE ../../../XLR8PID/extras/rtl/xlr8_pid.v
+set_global_assignment -name VERILOG_FILE ../rtl/openxlr8.v
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_global_assignment -name QIP_FILE ../rtl/colorRamConfig.qip
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
