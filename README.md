@@ -1,3 +1,10 @@
+=======
+# LED-Matrix-XLR8-Block
+
+XLR8 hardware accelerator and support code for controlling an LED matrix
+
+---
+Original Alorium Text
 XLR8BuildTemplate library
 =========================
 
